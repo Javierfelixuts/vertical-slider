@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vertical Slider</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    .container {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        overflow: hidden;
+
+    }
+    .slide-left {
+        width: 40%;
+        height: 100vh;
+        transition: 1s;
+    }
+    .slide-right {
+        width: 60%;
+        height: 100vh;
+        transition: 1s;
+    }
+
+    .slide {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: .5s ease-in-out;
+    }
+
+    .arrows {
+        width: 100px;
+        height: 100px;
+        position: fixed;
+        top: calc(50% - 50px);
+        left: calc(40% - 50px);
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        gap: 0;
+        z-index: 10;
+    }
+
+    .arrow-up {
+        background: #fff;
+        border-top-right-radius: 8px;
+        border-bottom-right-radius: 8px;
+        cursor: pointer;
+    }
+
+    .arrow-down {
+        background: #fff;
+        border-top-left-radius: 8px;
+        border-bottom-left-radius: 8px;
+        cursor: pointer;
+    }
+
+    .arrow-button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .arrow-button>svg {
+        width: 20px;
+    }
+
+    .slide-right>.slide:nth-child(1) {
+        background: green;
+    }
+
+    .slide-right>.slide:nth-child(2) {
+        background: yellow;
+    }
+
+    .slide-right>.slide:nth-child(3) {
+        background: orange;
+    }
+
+    .slide-left>.slide:nth-child(1) {
+        background: pink;
+    }
+
+    .slide-left>.slide:nth-child(2) {
+        background: bisque;
+    }
+
+    .slide-left>.slide:nth-child(3) {
+        background: red;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <div class="arrows">
+            <div></div>
+            <div id="arrow-up" class="arrow-button arrow-up">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 10.5L12 3m0 0l7.5 7.5M12 3v18" />
+                </svg>
+            </div>
+            <div id="arrow-down" class="arrow-button arrow-down">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5L12 21m0 0l-7.5-7.5M12 21V3" />
+                </svg>
+            </div>
+        </div>
+        <div id="slide-left" class="slide-left">
+
+            <div class="slide">1</div>
+            <div class="slide">2</div>
+            <div class="slide">3</div>
+        </div>
+        <div id="slide-right" class="slide-right">
+            <div class="slide" style="background-image: url('./bg_01.jpg'); background-size: cover; background-position: center center;"></div>
+            <div class="slide" style="background-image: url('./bg_02.jpg'); background-size: cover; background-position: center center;"></div>
+            <div class="slide" style="background-image: url('./bg_03.jpg'); background-size: cover; background-position: center center;"></div>
+        </div>
+
+    </div>
+
+
+    <script>
+        let slideRight = document.getElementById('slide-right');
+        let slideLeft = document.getElementById('slide-left');
+
+        const itemsLentgth = (slideLeft.querySelectorAll('.slide').length - 1) * 100;
+        
+        slideLeft.style.transform = `translateY(-${itemsLentgth}vh)`;
+        let trayectoRight = 100;
+        let trayectoLeft = -200;
+
+        document.getElementById('arrow-up').addEventListener('click', onUp)
+        document.getElementById('arrow-down').addEventListener('click', onDown)
+        function onUp() {
+            startUpAnimation()
+            startDownAnimation()
+        }
+        function onDown() {
+            startDownAnimation()
+            startUpAnimation()
+        }
+
+        function startDownAnimation(){
+            trayectoLeft += 100
+            slideLeft.style.transform = `translateY(${trayectoLeft}vh)`;
+            if (trayectoLeft == 0) {
+                trayectoLeft = -300;
+            }
+        }
+
+        function startUpAnimation(){
+            slideRight.style.transform = `translateY(-${trayectoRight}vh)`;
+            trayectoRight += 100;
+            if (trayectoRight == 300) {
+                trayectoRight = 0;
+            }
+        }
+
+        
+
+    </script>
+    <script src="./app.js"></script>
+</body>
+
+</html>

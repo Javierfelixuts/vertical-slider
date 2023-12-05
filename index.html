@@ -39,6 +39,10 @@
         align-items: center;
         transition: .5s ease-in-out;
     }
+    .slide > .title{
+        font-family: sans-serif;
+        color: #fff;
+    }
 
     .arrows {
         width: 100px;
@@ -78,7 +82,7 @@
     }
 
     .slide-right>.slide:nth-child(1) {
-        background: green;
+        background: #5D848C;
     }
 
     .slide-right>.slide:nth-child(2) {
@@ -90,15 +94,15 @@
     }
 
     .slide-left>.slide:nth-child(1) {
-        background: pink;
+        background: #2B4030;
     }
 
     .slide-left>.slide:nth-child(2) {
-        background: bisque;
+        background: #448575;
     }
 
     .slide-left>.slide:nth-child(3) {
-        background: red;
+        background: #d78c2f;
     }
 </style>
 
@@ -121,9 +125,15 @@
         </div>
         <div id="slide-left" class="slide-left">
 
-            <div class="slide">1</div>
-            <div class="slide">2</div>
-            <div class="slide">3</div>
+            <div class="slide">
+                <h3 class="title">Aromas Sobre Ruedas</h3>
+            </div>
+            <div class="slide">
+                <h3 class="title">La Vida Loca de Krusty: Detrás de la Sonrisa Pintada</h3>
+            </div>
+            <div class="slide">
+                <h3 class="title">Elevación Termal: El Secreto de los Globos Calientes</h3>
+            </div>
         </div>
         <div id="slide-right" class="slide-right">
             <div class="slide" style="background-image: url('./bg_01.jpg'); background-size: cover; background-position: center center;"></div>
